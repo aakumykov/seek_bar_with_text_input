@@ -26,7 +26,9 @@ class SeekBarWithTextInput @JvmOverloads constructor(
     private val label: TextView
 
     private var changeListener: ChangeListener? = null
-    private var labelProvider: ((progress: Int) -> String)? = null
+    private var labelProvider: ((progress: Int) -> String)? = { progress ->
+        label.context.getString(R.string.label, progress)
+    }
 
     init {
         inflate(context, R.layout.seek_bar_with_text_input, this)
@@ -65,6 +67,9 @@ class SeekBarWithTextInput @JvmOverloads constructor(
             })
 
             progressTextInput.visibility = if (attribHideTextInput) GONE else VISIBLE
+
+            updateProgressLabel(attribProgress)
+            updateProgressTextInput(attribProgress)
 
         } catch (t: Throwable) {
             Log.e(TAG, t.message, t)

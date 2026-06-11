@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="value_input_hint">progress value</string>
+    <string name="label">Progress: %1$d</string>
+    <string name="value_input_hint">value</string>
 </resources>
